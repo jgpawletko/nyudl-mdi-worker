@@ -5,7 +5,7 @@ require 'nyudl/mdi/worker/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "nyudl-mdi-worker"
-  spec.version       = Nyudl::Mdi::Worker::VERSION
+  spec.version       = NYUDL::MDI::Worker::VERSION
   spec.authors       = ["jgpawletko"]
   spec.email         = ["jgpawletko@gmail.com"]
 

@@ -1,8 +1,9 @@
-Nyudl::Mdi::Worker
+NYUDL::MDI::Worker
 ==================
 
 ## Overview
-Worker class(es) for a Message Driven Infrastructure
+Worker base class for New York University Digital Library (NYUDL)
+Message-Driven Infrastructure (MDI).
 
 ## Status
 in development

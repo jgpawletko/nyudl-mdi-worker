@@ -1,7 +1,7 @@
 require "nyudl/mdi/worker/version"
 
-module Nyudl
-  module Mdi
+module NYUDL
+  module MDI
     module Worker
       # Your code goes here...
     end
