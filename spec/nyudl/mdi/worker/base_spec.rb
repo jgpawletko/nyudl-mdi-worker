@@ -1,11 +1,15 @@
 require 'spec_helper'
 
-describe Nyudl::Mdi::Worker do
-  it 'has a version number' do
-    expect(Nyudl::Mdi::Worker::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
+module NYUDL
+  module MDI
+    module Worker
+      describe Base do
+        context 'when instantiated' do
+          it 'should be the correct class' do
+            expect(Base.new).to be_an_instance_of(NYUDL::MDI::Worker::Base)
+          end
+        end
+      end
+    end
   end
 end
