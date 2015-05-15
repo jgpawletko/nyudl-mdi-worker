@@ -20,9 +20,7 @@ Subclasses inherit from the `Base` class and must implement two methods:
 |-----------------|-----------------------------------------------------|  
 |  `name:`        | the name of the application doing the work          |  
 |  `version:`     | the version of the application performing the work  |
-| `service_code:` | the service code assigned to this application, <br>
-                    e.g.,   `bag_validation`, `fixity_check`, <br>
-                            `e01_verify`, `format_identification`       |
+| `service_code:` | the service code assigned to this application, <br> e.g.,   `bag_validation`, `fixity_check`, <br> `e01_verify`, `format_identification`       |
 
 
 ```
