@@ -18,8 +18,8 @@ Subclasses inherit from the `Base` class and must implement two methods:
 
 | key             | description                                         |  
 |-----------------|-----------------------------------------------------|  
-|  `name:`        | the name of the application doing the work          |  
-|  `version:`     | the version of the application performing the work  |
+|  `name:`        | the name of the application performing the task     |  
+|  `version:`     | the version of the application performing the task  |
 | `service_code:` | the service code assigned to this application, <br> e.g.,   `bag_validation`, `fixity_check`, <br> `e01_verify`, `format_identification`       |
 
 
@@ -39,8 +39,8 @@ class BagValidatorWorker < NYUDL:MDI::Worker
     # unpack params and do super cool stuff here
     ...
     {
-      outcome: 'success',
-      data:    'cool data'
+      outcome: 'success',       # or 'error'
+      data:    'cool data'      # optional
     }
   end
 end
@@ -59,11 +59,25 @@ opts = { ... }
 Sneakers.configure(opts)
 
 def work(msg)
-      req = NYUDL:MDI::Message.request.new(msg)
-      res = NYUDL:MDI::Message.response.new(req)
-      res.start_time = Time.now.iso8601.utc
-      result = perform(req.params)
-      res.end_time   = Time.now.iso8601.utc
-      res.outcome    = result[:outcome]
-      res.data       = result[:data  ]
-      res.agent      = agent
+  res = NYUDL:MDI::Message.response.new(JSON.parse(msg))
+  res.start_time = Time.now.iso8601.utc
+  result = perform(req.params)
+  res.end_time   = Time.now.iso8601.utc
+  res.outcome    = result[:outcome]
+  res.data       = result[:data  ]
+  res.agent      = agent
+
+  publisher.publish(res, ...)
+  ack!
+end
+
+def publisher
+  @publisher ||= Sneakers::Publisher.new(publisher_opts)
+end
+  
+def publisher_opts
+...
+end
+
+```
+
